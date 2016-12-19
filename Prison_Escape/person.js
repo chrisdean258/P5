@@ -6,6 +6,8 @@ function person(size = 10, x = 0, y = 0, xVelocity = 0, yVelocity = 0)
   this.xVelocity = xVelocity;
   this.yVelocity = yVelocity;
 
+
+  this.counter = random(100);
   this.size = size;
 
   this.show = function(color = 0)
@@ -27,7 +29,7 @@ function person(size = 10, x = 0, y = 0, xVelocity = 0, yVelocity = 0)
     }
     else if (this.x > width - this.size)
     {
-        this.x = width - this.size
+        this.x = width - this.size;
     }
     if(this.y < 0)
     {
@@ -35,8 +37,31 @@ function person(size = 10, x = 0, y = 0, xVelocity = 0, yVelocity = 0)
     }
     else if (this.y > height - this.size)
     {
-        this.y = height - this.size
+        this.y = height - this.size;
     }
   }
-
+  this.check = function()
+  {
+    if (this.x > width - 20 && this.y > height -20)
+    {
+      this.x = 0; this.y = 0;
+      gaurds.push(new person(10,random(width),random(height)));
+      mult *= 1.1;
+    }
+  }
+  this.noiseUpdate = function(mult = 1)
+  {
+    if (this.counter < 100)
+    {
+      this.counter++;
+    }
+    else
+    {
+      var angle = noise(this.x,this.y) * TWO_PI * 16;
+      this.xVelocity = mult * cos(angle);
+      this.yVelocity = mult * sin(angle);
+      this.counter = 0;
+    }
+    this.update();
+  }
 }
