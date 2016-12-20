@@ -47,6 +47,14 @@ function person(size = 10, x = 0, y = 0, xVelocity = 0, yVelocity = 0)
       this.x = 0; this.y = 0;
       gaurds.push(new person(10,random(width),random(height)));
       mult *= 1.1;
+      level++;
+    }
+  }
+  this.check2 = function()
+  {
+    if (this.x > width - 40 && this.y > height - 40)
+    {
+      this.x = width; this.y = 0;
     }
   }
   this.noiseUpdate = function(mult = 1)

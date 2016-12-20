@@ -3,13 +3,14 @@ var gaurds = [];
 var numGaurds = 10;
 var lives = 3;
 var mult = 1;
+var level = 1;
 
 function setup() {
   createCanvas(500,500);
   you = new person(10,0,0,0,0);
   for(var i = 0; i < numGaurds; i++)
   {
-      gaurds.push(new person(10,random(width),random(height)));
+      gaurds.push(new person(10,random(50,width),random(50,height)));
   }
 }
 
@@ -37,8 +38,9 @@ function draw() {
 
     for(var i = 0; i < gaurds.length; i++)
     {
-      gaurds[i].show();
       gaurds[i].noiseUpdate(mult);
+      gaurds[i].check2();
+      gaurds[i].show();
     }
 
     noStroke();
@@ -52,14 +54,27 @@ function draw() {
       {
         lives--;
         you.x = you.y = 0;
+        for(var i = 0; i < gaurds.length; i++)
+        {
+          gaurds[i].x = random(50,width);
+          gaurds[i].y = random(50,height);
+        }
       }
     }
     you.check();
     you.show(95);
+    var s = "Level " + level;
+    var t = "Lives: " + lives;
+    textSize(10);
+    fill(0);
+    text(s, 10, 10);
+    text(t, width-50, 10);
   }
   else
   {
     background(0);
+    fill(255);
+    text("Game Over", width/2 - 20, height/2);
   }
 }
 
