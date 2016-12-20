@@ -26,27 +26,44 @@ function keyTyped()
 }
 
 function draw() {
-  background(250);
-  if (!keyIsPressed)
+  if(lives > 0)
   {
-    you.xVelocity = 0;
-    you.yVelocity = 0;
-  }
+    background(250);
+    if (!keyIsPressed)
+    {
+      you.xVelocity = 0;
+      you.yVelocity = 0;
+    }
 
-  for(var i = 0; i < gaurds.length; i++)
+    for(var i = 0; i < gaurds.length; i++)
+    {
+      gaurds[i].show();
+      gaurds[i].noiseUpdate(mult);
+    }
+
+    noStroke();
+    fill(0,255,0);
+    rect(width - 20, height-20, 20,20);
+
+    you.update();
+    for(var i = 0; i < gaurds.length; i++)
+    {
+      if(touching(you,gaurds[i]))
+      {
+        lives--;
+        you.x = you.y = 0;
+      }
+    }
+    you.check();
+    you.show(95);
+  }
+  else
   {
-    gaurds[i].show();
-    gaurds[i].noiseUpdate(mult);
+    background(0);
   }
+}
 
-  noStroke();
-  fill(0,255,0);
-  rect(width - 20, height-20, 20,20);
-
-  you.update();
-  you.check();
-  you.show(95);
-
-
-
+function touching(a,b)
+{
+  return (abs(a.x - b.x) < 10 && abs(a.y-b.y) < 10);
 }
