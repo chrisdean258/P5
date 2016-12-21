@@ -26,21 +26,21 @@ function associateDOM()
 function landTextChanged()
 {
   landSlider.value(landText.value());
-  updateCanvas = true;
+  render(1-landSlider.value(), 1-desertSlider.value());
 }
 function landSliderChanged()
 {
   landText.value(landSlider.value()+"");
-  updateCanvas = true;
+  render(1-landSlider.value(), 1-desertSlider.value());
 }
 
 function desertTextChanged()
 {
   desertSlider.value(desertText.value());
-  updateCanvas = true;
+  render(1-landSlider.value(), 1-desertSlider.value());
 }
 function desertSliderChanged()
 {
   desertText.value(desertSlider.value()+"");
-  updateCanvas = true;
+  render(1-landSlider.value(), 1-desertSlider.value());
 }

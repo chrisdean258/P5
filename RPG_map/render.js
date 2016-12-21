@@ -1,3 +1,4 @@
+var noiseArr = [];
 function render(land = .5, desert = .75)
 {
   loadPixels();

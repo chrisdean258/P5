@@ -1,8 +1,4 @@
-var noiseArr = [];
-var sliderWidth;
-var sliderHeight;
 const max = 1000;
-var updateCanvas = true;
 
 function setup()
 {
@@ -11,14 +7,6 @@ function setup()
 
   associateDOM();
 
-  calculateNoise(.01)
-}
-
-function draw()//loop draws the canvas
-{
-  if(updateCanvas)
-  {
-    render(1-landSlider.value(), 1-desertSlider.value());
-    updateCanvas = false;
-  }
+  calculateNoise(.01);
+  render(1-landSlider.value(), 1-desertSlider.value());
 }
