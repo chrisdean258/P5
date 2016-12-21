@@ -7,28 +7,32 @@
 
     <script src="libraries/p5.dom.js" type="text/javascript"></script>
 
-    <script src="setup.js" type="text/javascript"></script>
     <script src="render.js" type="text/javascript"></script>
     <script src="sketch.js" type="text/javascript"></script>
 
 
-    <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
+    <style>
+      body {padding: 0; margin: 0;}
+      canvas {vertical-align: top;}
+    </style>
   </head>
   <body>
     <div id="canvasDIV">
       <!--This div used to position the canvas-->
     </div>
     <br>
-    <div class="land">
-      Land
-      <input class="land" type="range" min="0" max="1" step = ".01" value = "0.5" id="landSlider"></slider>
-      <input class="land" type="text" id = "landText">
-    </div>
-    <div class="desert">
-      Desert
-      <input class="desert" type="range" min="0" max="1" step = ".01" value = "0.33" id="desertSlider"></slider>
-      <input class="desert" type="text" id = "desertText">
-    </div>
+    <table>
+      <tr>
+        <td>Land</td>
+        <td><input class="slider" type="range" min="0" max="1" step = ".01" value = "0.5" id="landSlider"></slider></td>
+        <td><input class="textInput" ut="text" id = "landText"></td>
+      </tr>
+      <tr>
+        <td>Desert</td>
+        <td><input class="slider" type="range" min="0" max="1" step = ".01" value = "0.33" id="desertSlider"></slider></td>
+        <td><input class="textInput" type="text" id = "desertText"></td>
+      </tr>
+    </table>
 
   </body>
 </html>
