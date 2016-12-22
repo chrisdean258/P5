@@ -1,5 +1,6 @@
 var noiseArr = [];
-function render(land = .5, desert = .75)
+//const maxSize = 1000;
+function render(land = 1-landSlider.value(), desert = 1-desertSlider.value())
 {
   loadPixels();
   for(var i = 0; i < width; i++)
@@ -7,7 +8,7 @@ function render(land = .5, desert = .75)
     for(var j = 0; j < height; j++)
     {
       var pixelIndex = (i + j * width) * 4;
-      var noiseIndex = i*max + j;
+      var noiseIndex = i*maxSize + j;
       pixels[pixelIndex + 0] = 0;
       pixels[pixelIndex + 1] = 0;
       pixels[pixelIndex + 2] = 0;
@@ -30,14 +31,16 @@ function render(land = .5, desert = .75)
   updatePixels();
 }
 
-function calculateNoise(detail = .01)
+function calculateNoise(noiseInc = .01, detail = detailSlider.value(), seed = 0)
 {
-  for(var i = 0; i < max; i++)
+  noiseSeed(seed);
+  noiseDetail(detail);
+  for(var i = 0; i < maxSize; i++)
     {
-    for(var j = 0; j < max; j++)
+    for(var j = 0; j < maxSize; j++)
     {
-      index = i * max + j;
-      noiseArr[index] = noise(detail*i, detail*j);
+      index = i * maxSize + j;
+      noiseArr[index] = noise(noiseInc*i, noiseInc*j);
     }
   }
 }
