@@ -9,9 +9,16 @@ function setup()
 
   associateDOM();
 
-  calculateNoise(.01);
+  calculateNoise();
   render(1-landSlider.value(), 1-desertSlider.value());
 }
+
+/*function draw()
+{
+  calculateNoise(zoomSlider.value(), detailSlider.value(), frameCount);
+  render();
+  frameRate(1);
+}*/
 
 function windowResized()
 {
@@ -29,6 +36,7 @@ var landText;
 var desertSlider;
 var desertText;
 var detailSlider;
+var zoomSlider;
 
 function associateDOM()
 {
@@ -40,6 +48,26 @@ function associateDOM()
   detailText.other = detailSlider;
   detailText.changed(valChangedCalc);
   detailSlider.changed(valChangedCalc);
+
+  zoomSlider = select("#zoomSlider");
+  zoomText = select("#zoomText");
+  zoomSlider.value(.01);
+  zoomText.value(zoomSlider.value()+"");
+  zoomSlider.other = zoomText;
+  zoomText.other = zoomSlider;
+  zoomText.changed(valChangedCalc);
+  zoomSlider.changed(valChangedCalc);
+  zoomText.hide();
+
+  zSlider = select("#zSlider");
+  zText = select("#zText");
+  zSlider.value(.5);
+  zText.value(zSlider.value()+"");
+  zSlider.other = zText;
+  zText.other = zSlider;
+  zText.changed(valChangedCalc);
+  zSlider.changed(valChangedCalc);
+
 
   landSlider = select("#landSlider");
   landText = select("#landText");
@@ -62,12 +90,18 @@ function associateDOM()
 
 function valChangedRender()
 {
-  this.other.value(this.value());
+  if(this.other != undefined)
+  {
+    this.other.value(this.value());
+  }
   render();
 }
 function valChangedCalc()
 {
-  this.other.value(this.value());
+  if(this.other != undefined)
+  {
+    this.other.value(this.value());
+  }
   calculateNoise()
   render();
 }

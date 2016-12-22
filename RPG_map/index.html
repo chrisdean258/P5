@@ -16,6 +16,7 @@
       body {padding: 0; margin: 0;}
       canvas {vertical-align: top;}
       .slideLinkedInput{width: 40px}
+      .break{height: 10px}
       #inputData {vertical-align: top; float: right;}
       #pageTable{width: 100%}
     </style>
@@ -40,6 +41,17 @@
             <td><input class="slider" type="range" min="1" max="100" step="1" value="4" id="detailSlider"></td>
             <td><input class="slideLinkedInput" type="text" id = "detailText"></td>
           </tr>
+          <tr title="This may take a second to update">
+            <td>Zoom</td>
+            <td><input class="slider" type="range" min="0" max=".01" step=".000001" value=".01" id="zoomSlider"></td>
+            <td><input class="slideLinkedInput" type="text" id = "zoomText"></td>
+          </tr>
+          <tr title="This may take a second to update">
+            <td>Adjust Map</td>
+            <td><input class="slider" type="range" min="0" max="1" step=".001" value=".5" id="zSlider"></td>
+            <td><input class="slideLinkedInput" type="text" id = "zText"></td>
+          </tr>
+          <tr><td><p class="break"></p></td></tr>
           <tr>
             <td>Land</td>
             <td><input class="slider" type="range" min="0" max="1" step = ".01" value = "0.5" id="landSlider"></td>
