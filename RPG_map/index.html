@@ -10,6 +10,7 @@
 
     <script src="sketch.js" type="text/javascript"></script>
     <script src="render.js" type="text/javascript"></script>
+    <script src="associateDom.js" type="text/javascript"></script>
 
     <style>
       table, th, td{border-collapse: collapse; border: 0px solid black; padding: 0px}
@@ -42,14 +43,14 @@
             <td><input class="slideLinkedInput" type="text" id = "detailText"></td>
           </tr>
           <tr title="This may take a second to update">
-            <td>Zoom</td>
-            <td><input class="slider" type="range" min="0" max=".01" step=".000001" value=".01" id="zoomSlider"></td>
-            <td><input class="slideLinkedInput" type="text" id = "zoomText"></td>
-          </tr>
-          <tr title="This may take a second to update">
             <td>Adjust Map</td>
             <td><input class="slider" type="range" min="0" max="1" step=".001" value=".5" id="zSlider"></td>
             <td><input class="slideLinkedInput" type="text" id = "zText"></td>
+          </tr>
+          <tr title="This may take a second to update">
+            <td>Zoom</td>
+            <td><input class="slider" type="range" min="0" max=".01" step=".000001" value=".01" id="zoomSlider"></td>
+            <td><input class="slideLinkedInput" type="text" id = "zoomText"></td>
           </tr>
           <tr><td><p class="break"></p></td></tr>
           <tr>
