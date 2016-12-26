@@ -26,6 +26,26 @@ function associateDOM()
   zoomSlider.changed(valChangedCalc);
   zoomText.hide();
 
+  ySlider = select("#ySlider");
+  yText = select("#yText");
+  ySlider.value(0);
+  yText.value(ySlider.value()+"");
+  ySlider.other = yText;
+  yText.other = ySlider;
+  yText.input(valChangedCalc);
+  ySlider.input(valChangedCalc);
+  //yText.hide();
+
+  xSlider = select("#xSlider");
+  xText = select("#xText");
+  xSlider.value(0);
+  xText.value(xSlider.value()+"");
+  xSlider.other = xText;
+  xText.other = xSlider;
+  xText.input(valChangedCalc);
+  xSlider.input(valChangedCalc);
+  //xText.hide();
+
   zSlider = select("#zSlider");
   zText = select("#zText");
   zSlider.value(.5);

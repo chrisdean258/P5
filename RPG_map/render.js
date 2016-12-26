@@ -31,7 +31,7 @@ function render(land = 1-landSlider.value(), desert = 1-desertSlider.value())
   updatePixels();
 }
 
-function calculateNoise(noiseInc = zoomSlider.value(), detail = sqrt(detailSlider.value()), seed = 7, z = zSlider.value())
+function calculateNoise(noiseInc = zoomSlider.value(), detail = sqrt(detailSlider.value()), seed = 7, z = zSlider.value(), xoff = xSlider.value(), yoff = ySlider.value())
 {
   noiseSeed(seed);
   noiseDetail(detail);
@@ -40,7 +40,7 @@ function calculateNoise(noiseInc = zoomSlider.value(), detail = sqrt(detailSlide
     for(var j = 0; j < maxSize; j++)
     {
       index = i * maxSize + j;
-      noiseArr[index] = noise(noiseInc*i, noiseInc*j, z);
+      noiseArr[index] = noise(noiseInc*(i+xoff), noiseInc*(j+yoff), z);
     }
   }
 }
