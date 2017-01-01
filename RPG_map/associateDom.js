@@ -32,8 +32,8 @@ function associateDOM()
   yText.value(ySlider.value()+"");
   ySlider.other = yText;
   yText.other = ySlider;
-  yText.input(valChangedCalc);
-  ySlider.input(valChangedCalc);
+  yText.changed(valChangedCalc);
+  ySlider.changed(valChangedCalc);
   //yText.hide();
 
   xSlider = select("#xSlider");
@@ -42,8 +42,8 @@ function associateDOM()
   xText.value(xSlider.value()+"");
   xSlider.other = xText;
   xText.other = xSlider;
-  xText.input(valChangedCalc);
-  xSlider.input(valChangedCalc);
+  xText.changed(valChangedCalc);
+  xSlider.changed(valChangedCalc);
   //xText.hide();
 
   zSlider = select("#zSlider");
