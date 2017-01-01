@@ -12,4 +12,12 @@ function mass(x,y,mass)
     point(this.x,this.y);
     pop();
   }
+
+  this.update = function()
+  {
+    this.x *= decay;
+    this.y *= decay;
+    this.x += this.velocity.x;
+    this.y += this.velocity.y;
+  }
 }
