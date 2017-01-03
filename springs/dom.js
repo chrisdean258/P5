@@ -14,3 +14,12 @@ function pauseButtonPressed()
   }
 
 }
+
+function addSpringToSim()
+{
+}
+
+function addMassToSim()
+{
+  
+}
