@@ -1,78 +1,61 @@
-const decay = 1;
-var dm;
-var loopNum;
-var springs = [];
-var masses = [];
+var drawMode;
+var loopNumber;
 
-var addMass;
-var addSpring;
+var masses = [];
+var springs = [];
+var pauseButton;
+
 
 function setup() 
 {
-  canvas = createCanvas(600,600);
+  var canvas = createCanvas(600,600);
   canvas.parent("#canvas");
   background(250);
 
-  dm = createSlider(0,1,1,1);
-  dm.changed(bg);
-  dm.parent("#dmSlider")
+  loopNumber = createSlider(1,1000,1,1);
+  loopNumber.parent("#loopNumber");
 
-  loopNum = createSlider(0,100,1,1);
-  loopNum.parent("#loopNum");
+  drawMode = createSlider(0,1,1,1);
+  drawMode.parent("#drawMode");
 
-  addSpring = createButton("Add Spring");
-  addSpring.parent("#springs");
-  addSpring.mousePressed(add_spring);
+  createElement('br').parent("#canvas");
+  pauseButton = createButton("Start", "paused");
+  pauseButton.parent("#canvas");
+  pauseButton.style("width", "100px");
+  pauseButton.style("margin-left", (width - 100)/2 + "px");
+  pauseButton.mousePressed(pauseButtonPressed);
+}
 
-  addMass = createButton("Add Mass");
-  addMass.parent("#masses");
-}
-function bg()
-{
-  background(250);
-}
-function add_spring()
-{
-  var spr = new spring(100,100,200,200,1,100);
-  springs.push(spr);
-}
 
 function draw() 
 {
-  var drawmode = dm.value();
+  if(pauseButton.value() === "playing")
+  {
+    console.log("hi");
+    if(drawMode.value == 1) 
+      background(250);
 
-  for(var j = 0; j < loopNum.value()*loopNum.value(); j++){
-    for(var i = 0; i < springs.length; i++)
-    {
-      springs[i].update1();
-    }  
-    for(var i = 0; i < masses.length; i++)
-    {
-      masses[i].update();
-      strokeWeight(1);
-    }
-    for(var i = 0; i < springs.length; i++)
-    {
-      springs[i].update2();
-    }
-
-    if(drawmode === 1)
+    for(var j =0; j * j < loopNumber.value(); j++)
     {
       for(var i = 0; i < masses.length; i++)
       {
-        point(masses[i].x,masses[i].y);
+        masses[i].update()
+        if(drawMode.value() == 1)
+        {
+          masses[i].show;
+        }
+        else 
+        {
+          point(masses[i].x, masses[i].y);
+        }
       }
-    }
-    else
-    {
-      background(250);
       for(var i = 0; i < springs.length; i++)
       {
-        springs[i].show();
-      }
-      for(var i = 0; i < masses.length; i++)
-      {
-        masses[i].show();
+        springs[i].update()
+        if(drawMode.value() == 1)
+        {
+          springs[i].show;
+        }
       }
     }
   }

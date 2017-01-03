@@ -15,8 +15,9 @@ function mass(x,y,mass)
 
   this.update = function()
   {
-    this.x *= decay;
-    this.y *= decay;
+    this.velocity.x *= decay;
+    this.velocity.y *= decay;
+    
     this.x += this.velocity.x;
     this.y += this.velocity.y;
   }
