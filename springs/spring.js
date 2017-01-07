@@ -25,6 +25,7 @@ function spring(x2,y2,x1,y1, k , len)
 
   this.update1 = function()
   {
+
     var x = this.x1-this.x;
     var y = this.y1-this.y;
 
@@ -33,14 +34,26 @@ function spring(x2,y2,x1,y1, k , len)
 
     var xForce = x*(1-def) * k;
     var yForce = y*(1-def) * k;
-
-    this.attached.velocity.x -= xForce/this.attached.mass;
-    this.attached.velocity.y -= yForce/this.attached.mass;
+    if(this.attached !== undefined)
+    {
+      this.attached.velocity.x -= xForice/this.attached.mass;
+      this.attached.velocity.y -= yForce/this.attached.mass;
+    }
+    else
+    {
+      this.velocity.x -= xForce;
+      this.velocity.y -= yForce;
+      this.x1 += this.velocity.x;
+      this.y1 += this.velocity.y;
+    }
   }
   this.update2 = function()
   {
-    this.x1 = this.attached.x;
-    this.y1 = this.attached.y;
+    if(this.attached !== undefined)
+    {
+      this.x1 = this.attached.x;
+      this.y1 = this.attached.y;
+    }
   }
 
 }

@@ -1,41 +1,81 @@
-const decay = .99999;
+const decay = 1;
+var dm;
+var loopNum;
 var springs = [];
 var masses = [];
+
+var addMass;
+var addSpring;
+
 function setup() 
 {
-  createCanvas(600,600);
-  springs[0] = new spring(100,100,200,200,1,100);
-  springs[1] = new spring(100,300,200,200,1,100);
-  springs[2] = new spring(400,400,200,200,1,100);
-  masses[0] = new mass(200,200,5);
+  canvas = createCanvas(600,600);
+  canvas.parent("#canvas");
+  background(250);
 
-  springs[0].attached = masses[0];
-  springs[1].attached = masses[0];
-  springs[2].attached = masses[0];
+  dm = createSlider(0,1,1,1);
+  dm.changed(bg);
+  dm.parent("#dmSlider")
+
+  loopNum = createSlider(0,100,1,1);
+  loopNum.parent("#loopNum");
+
+  addSpring = createButton("Add Spring");
+  addSpring.parent("#springs");
+  addSpring.mousePressed(add_spring);
+
+  addMass = createButton("Add Mass");
+  addMass.parent("#masses");
 }
-
+function bg()
+{
+  background(250);
+}
+function add_spring()
+{
+  var spr = new spring(100,100,200,200,1,100);
+  springs.push(spr);
+}
 
 function draw() 
 {
-  for(var j = 0; j < 25; j++){
-  //background(250);
-  for(var i = 0; i < springs.length; i++)
-  {
-    springs[i].update1();
-  }  
-  for(var i = 0; i < masses.length; i++)
-  {
-    masses[i].update();
-    //masses[i].show();
-    strokeWeight(1);
-    point(masses[i].x,masses[i].y);
+  var drawmode = dm.value();
+
+  for(var j = 0; j < loopNum.value()*loopNum.value(); j++){
+    for(var i = 0; i < springs.length; i++)
+    {
+      springs[i].update1();
+    }  
+    for(var i = 0; i < masses.length; i++)
+    {
+      masses[i].update();
+      strokeWeight(1);
+    }
+    for(var i = 0; i < springs.length; i++)
+    {
+      springs[i].update2();
+    }
+
+    if(drawmode === 1)
+    {
+      for(var i = 0; i < masses.length; i++)
+      {
+        point(masses[i].x,masses[i].y);
+      }
+    }
+    else
+    {
+      background(250);
+      for(var i = 0; i < springs.length; i++)
+      {
+        springs[i].show();
+      }
+      for(var i = 0; i < masses.length; i++)
+      {
+        masses[i].show();
+      }
+    }
   }
-  for(var i = 0; i < springs.length; i++)
-  {
-    springs[i].update2();
-    //springs[i].show();
-  }  
-}
 }
 
 

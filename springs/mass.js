@@ -8,7 +8,7 @@ function mass(x,y,mass)
   this.show = function()
   {
     push();
-    strokeWeight(4*mass);
+    strokeWeight(20);
     point(this.x,this.y);
     pop();
   }
