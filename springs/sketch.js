@@ -8,6 +8,7 @@ var pauseButton;
 var addSpring;
 var addMass;
 
+var resetButton;
 
 function setup() 
 {
@@ -41,6 +42,10 @@ function setup()
   addMass = createButton("Add Mass");
   addMass.parent("#masses")
   addMass.mousePressed(addMassToSim);
+
+  resetButton = createButton("Reset");
+  resetButton.parent("#controlTable");
+  resetButton.mousePressed(reset);
 }
 
 

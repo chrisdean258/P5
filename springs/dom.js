@@ -15,11 +15,17 @@ function pauseButtonPressed()
 
 }
 
+function reset()
+{
+  masses = [];
+  springs = [];
+}
+
 function addSpringToSim()
 {
+  masses.push(new spring());
 }
 
 function addMassToSim()
 {
-  
 }
